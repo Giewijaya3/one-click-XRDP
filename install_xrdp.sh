@@ -32,10 +32,12 @@ case $choice in
     2)
         echo "🟡 menginstall gnome..."
         sudo apt install ubuntu-desktop -y
+        echo "gnome-session" > ~/.xsession
         ;;
     3)
         echo "🔵 menginstall kde..."
         sudo apt install kde-plasma-desktop -y
+        echo "startplasma-x11" > ~/.xsession
         ;;
     *)
         echo "⚠️ pilihan tidak valid, default ke xfce..."
@@ -44,8 +46,9 @@ case $choice in
         ;;
 esac
 
-# restart xrdp
-echo "🔄 restart xrdp..."
+# pastikan sesi xrdp terkonfigurasi dengan benar
+echo "🔧 konfigurasi xrdp session..."
+echo "xfce4-session" > ~/.xsession
 sudo systemctl restart xrdp
 
 # atur hak akses xrdp
@@ -60,3 +63,4 @@ sudo ufw enable
 sudo ufw reload
 
 echo "✅ instalasi selesai! gunakan remote desktop untuk mengakses VPS."
+
