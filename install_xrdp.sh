@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "🚀 mulai instalasi xrdp dan lingkungan desktop..."
+echo "🚀 mulai instalasi xrdp, docker, dan npm..."
 
 # update sistem
 echo "🔄 update sistem..."
@@ -56,6 +56,17 @@ echo "🔐 mengatur hak akses xrdp..."
 sudo adduser xrdp ssl-cert
 sudo systemctl restart xrdp
 
+# install docker
+echo "🐳 menginstall docker..."
+sudo apt install -y docker.io
+sudo systemctl enable docker
+sudo systemctl start docker
+sudo usermod -aG docker $USER
+
+# install npm dan node.js
+echo "📦 menginstall node.js dan npm..."
+sudo apt install -y nodejs npm
+
 # konfigurasi firewall
 echo "🛡️ mengaktifkan firewall (ufw) dan membuka port 3389..."
 sudo ufw allow 3389/tcp
@@ -63,4 +74,3 @@ sudo ufw enable
 sudo ufw reload
 
 echo "✅ instalasi selesai! gunakan remote desktop untuk mengakses VPS."
-
