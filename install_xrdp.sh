@@ -81,6 +81,11 @@ EOF
 chmod +x /etc/xrdp/startwm.sh
 systemctl restart xrdp xrdp-sesman
 
+# konfigurasi firewall (ufw)
+ufw allow 3390/tcp  # izinkan xrdp
+ufw allow 22/tcp    # izinkan ssh
+ufw reload          # terapkan aturan
+
 echo "Xrdp berhasil diinstal untuk pengguna $username!"
 echo "silakan koneksi via RDP ke your_server_ip:3390"
 echo "username: $username | password: password123 (harap ubah setelah login)"
